@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/team-ide/go-driver/db_kingbase_v8r6"
+	"github.com/nbird6266/go-driver/db_kingbase_v8r6"
 	"testing"
 )
 

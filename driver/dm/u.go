@@ -10,7 +10,7 @@ import (
 	"database/sql"
 	"database/sql/driver"
 	"fmt"
-	"github.com/team-ide/go-driver/driver/dm/util"
+	"github.com/nbird6266/go-driver/driver/dm/util"
 	"io"
 	"math/big"
 	"reflect"

@@ -3,12 +3,12 @@ package main
 import (
 	"database/sql"
 	"fmt"
-	"github.com/team-ide/go-driver/db_dm"
-	"github.com/team-ide/go-driver/db_kingbase_v8r3"
-	"github.com/team-ide/go-driver/db_kingbase_v8r6"
-	"github.com/team-ide/go-driver/db_mysql"
-	"github.com/team-ide/go-driver/db_shentong"
-	"github.com/team-ide/go-driver/db_ux"
+	"github.com/nbird6266/go-driver/db_dm"
+	"github.com/nbird6266/go-driver/db_kingbase_v8r3"
+	"github.com/nbird6266/go-driver/db_kingbase_v8r6"
+	"github.com/nbird6266/go-driver/db_mysql"
+	"github.com/nbird6266/go-driver/db_shentong"
+	"github.com/nbird6266/go-driver/db_ux"
 	"testing"
 )
 

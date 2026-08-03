@@ -3,7 +3,7 @@ package db_shentong
 import (
 	"database/sql"
 	"fmt"
-	_ "github.com/team-ide/go-driver/driver/shentong/go-oscar"
+	_ "github.com/nbird6266/go-driver/driver/shentong/go-oscar"
 	"net/url"
 )
 

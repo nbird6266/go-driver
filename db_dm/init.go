@@ -3,7 +3,7 @@ package db_dm
 import (
 	"database/sql"
 	"fmt"
-	_ "github.com/team-ide/go-driver/driver/dm"
+	_ "github.com/nbird6266/go-driver/driver/dm"
 	"net/url"
 )
 

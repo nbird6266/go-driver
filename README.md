@@ -37,7 +37,7 @@ package main
 
 import (
   "fmt"
-  "github.com/team-ide/go-driver/db_mysql"
+  "github.com/nbird6266/go-driver/db_mysql"
   "testing"
 )
 
@@ -78,7 +78,7 @@ package main
 
 import (
   "fmt"
-  "github.com/team-ide/go-driver/db_sqlite3"
+  "github.com/nbird6266/go-driver/db_sqlite3"
   "testing"
 )
 
@@ -136,7 +136,7 @@ package main
 
 import (
   "fmt"
-  "github.com/team-ide/go-driver/db_dm"
+  "github.com/nbird6266/go-driver/db_dm"
   "testing"
 )
 
@@ -194,7 +194,7 @@ package main
 
 import (
   "fmt"
-  "github.com/team-ide/go-driver/db_kingbase_v8r6"
+  "github.com/nbird6266/go-driver/db_kingbase_v8r6"
   "testing"
 )
 
@@ -270,7 +270,7 @@ package main
 
 import (
   "fmt"
-  "github.com/team-ide/go-driver/db_shentong"
+  "github.com/nbird6266/go-driver/db_shentong"
   "testing"
 )
 
@@ -351,7 +351,7 @@ package main
 
 import (
   "fmt"
-  "github.com/team-ide/go-driver/db_oracle"
+  "github.com/nbird6266/go-driver/db_oracle"
   "testing"
 )
 
@@ -413,7 +413,7 @@ package main
 
 import (
   "fmt"
-  "github.com/team-ide/go-driver/db_postgresql"
+  "github.com/nbird6266/go-driver/db_postgresql"
   "testing"
 )
 
@@ -494,7 +494,7 @@ package main
 
 import (
   "fmt"
-  "github.com/team-ide/go-driver/db_gbase"
+  "github.com/nbird6266/go-driver/db_gbase"
   "testing"
 )
 

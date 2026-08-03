@@ -12,7 +12,7 @@ import (
 	"time"
 	"unsafe"
 
-	"github.com/team-ide/go-driver/driver/odbc/api"
+	"github.com/nbird6266/go-driver/driver/odbc/api"
 )
 
 // TODO(brainman): see if I could use SQLExecDirect anywhere

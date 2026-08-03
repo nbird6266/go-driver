@@ -8,7 +8,7 @@ package dm
 import (
 	"bytes"
 	"fmt"
-	"github.com/team-ide/go-driver/driver/dm/i18n"
+	"github.com/nbird6266/go-driver/driver/dm/i18n"
 	"runtime"
 )
 

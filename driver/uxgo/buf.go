@@ -3,7 +3,7 @@ package uxgo
 import (
 	"bytes"
 	"encoding/binary"
-	"github.com/team-ide/go-driver/driver/uxgo/oid"
+	"github.com/nbird6266/go-driver/driver/uxgo/oid"
 )
 
 type readBuf []byte

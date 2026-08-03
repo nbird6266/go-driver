@@ -22,7 +22,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/team-ide/go-driver/driver/odbc/api"
+	"github.com/nbird6266/go-driver/driver/odbc/api"
 )
 
 var (

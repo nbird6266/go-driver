@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/team-ide/go-driver/db_oracle"
+	"github.com/nbird6266/go-driver/db_oracle"
 	"testing"
 )
 

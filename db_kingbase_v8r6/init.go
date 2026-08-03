@@ -6,7 +6,7 @@ import (
 	"net/url"
 
 	//_ "github.com/lib/pq"
-	_ "github.com/team-ide/go-driver/driver/kingbase/v8r6/kingbase.com/gokb"
+	_ "github.com/nbird6266/go-driver/driver/kingbase/v8r6/kingbase.com/gokb"
 )
 
 func GetDriverName() string {

@@ -7,7 +7,7 @@ package odbc
 import (
 	"fmt"
 
-	"github.com/team-ide/go-driver/driver/odbc/api"
+	"github.com/nbird6266/go-driver/driver/odbc/api"
 )
 
 func ToHandleAndType(handle interface{}) (h api.SQLHANDLE, ht api.SQLSMALLINT, err error) {

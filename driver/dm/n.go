@@ -8,7 +8,7 @@ import (
 	"bytes"
 	"context"
 	"database/sql/driver"
-	"github.com/team-ide/go-driver/driver/dm/util"
+	"github.com/nbird6266/go-driver/driver/dm/util"
 	"net"
 	"net/url"
 	"os"

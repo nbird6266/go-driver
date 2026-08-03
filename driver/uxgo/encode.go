@@ -14,7 +14,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/team-ide/go-driver/driver/uxgo/oid"
+	"github.com/nbird6266/go-driver/driver/uxgo/oid"
 )
 
 var time2400Regex = regexp.MustCompile(`^(24:00(?::00(?:\.0+)?)?)(?:[Z+-].*)?$`)

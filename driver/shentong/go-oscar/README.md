@@ -30,11 +30,18 @@
 import (
     "database/sql"
 
-    _ "github.com/team-ide/go-driver/driver/shentong/go-oscar" // 注册 oscar 驱动
+    _ "github.com/nbird6266/go-driver/driver/shentong/go-oscar" // 注册 oscar 驱动
 )
 ```
 
 > 用空白导入 `_` 触发 `init()` 中的 `sql.Register("oscar", ...)`。
+> 注意：该纯 Go 驱动只在 **nbird6266 的 fork** 上（官方 team-ide/go-driver
+> v1.3.8 的 `driver/shentong/` 下只有 cgo 版 go-aci），需拉取 fork 模块：
+>
+> ```
+> go get github.com/nbird6266/go-driver@<版本或分支>
+> ```
+>
 > 若以本地目录形式维护，可配合 `go.mod` 的 `replace` 指令使用。
 
 ### 2. DSN 格式

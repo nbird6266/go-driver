@@ -1,4 +1,4 @@
-module github.com/team-ide/go-driver
+module github.com/nbird6266/go-driver
 
 go 1.18
 

@@ -3,7 +3,7 @@ package db_ux
 import (
 	"database/sql"
 	"fmt"
-	_ "github.com/team-ide/go-driver/driver/uxgo"
+	_ "github.com/nbird6266/go-driver/driver/uxgo"
 	"net/url"
 )
 

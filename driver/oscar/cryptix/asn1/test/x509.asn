@@ -1,0 +1,200 @@
+-- sun.asn: contains the asn.1 X509v3 definition
+-- From: Søren Hilmer <hilmer@teliamail.dk>
+-- Object identifiers
+-------------------------------------------------------------------
+
+pkcs-1 OBJECT IDENTIFIER ::= {
+    iso(1) member-body(2) us(840) rsadsi(113549) pkcs(1) 1
+}
+
+-- This object identifier identifies RSA public and private
+-- keys and the RSA encryption and decryption processes.
+rsaEncryption OBJECT IDENTIFIER ::= { pkcs-1 1 }
+
+
+-- These object identifiers identify respectively, the
+-- "MD2 with RSA," "MD4 with RSA," and "MD5 with RSA"
+-- signature and verification processes.
+md2WithRSAEncryption OBJECT IDENTIFIER ::= { pkcs-1 2 }
+md4WithRSAEncryption OBJECT IDENTIFIER ::= { pkcs-1 3 }
+md5WithRSAEncryption OBJECT IDENTIFIER ::= { pkcs-1 4 }
+
+
+md2 OBJECT IDENTIFIER ::= {
+    iso member-body us rsadsi digestAlgorithmId(2) 2
+}
+
+md4 OBJECT IDENTIFIER ::= {
+    iso member-body us rsadsi digestAlgorithmId 4
+}
+
+md5 OBJECT IDENTIFIER ::= {
+    iso member-body us rsadsi digestAlgorithmId 5
+}
+
+ds OBJECT IDENTIFIER ::= { joint-iso-ccitt(2) 5 }
+
+id-at                         OBJECT IDENTIFIER ::= { ds 4 }
+id-at-commonName              OBJECT IDENTIFIER ::= { id-at  3 }
+id-at-countryName             OBJECT IDENTIFIER ::= { id-at  6 }
+id-at-organizationName        OBJECT IDENTIFIER ::= { id-at 10 }
+id-at-organizationalUnitName  OBJECT IDENTIFIER ::= { id-at 11 }
+
+
+-- RSA Public and Private keys
+-------------------------------------------------------------------
+
+RSAPublicKey ::= SEQUENCE {
+    modulus         INTEGER, -- the modulus n
+    publicExponent  INTEGER  -- the public exponent e
+}
+
+RSAPrivateKey ::= SEQUENCE {
+    -- the version number, for compatibility with future
+    -- revisions of this standard. It shall be 0 for this
+    -- version of the standard.
+    version         Version,
+    modulus         INTEGER, -- the modulus n
+    publicExponent  INTEGER, -- the public exponent e
+    privateExponent INTEGER, -- the private exponent d
+    prime1          INTEGER, -- the prime factor p of n
+    prime2          INTEGER, -- the prime factor q of n
+    exponent1       INTEGER, -- d mod (p-1)
+    exponent2       INTEGER, -- d mod (q-1)
+    coefficient     INTEGER  -- (inverse of q) mod p
+}
+
+Version ::= INTEGER { v1(0), v2(1), v3(2) } -- used also in Certificate
+
+
+-- Signature algorithms
+-------------------------------------------------------------------
+
+DigestInfo ::= SEQUENCE {
+    -- Identifies the message-digest algorithm (and any associated
+    -- parameters). For this application, it should identify the
+    -- selected message-digest algorithm, MD2, MD4 or MD5. For
+    -- reference, the relevant object identifiers are given earlier
+    -- in this module.
+    digestAlgorithm  DigestAlgorithmIdentifier,
+
+    -- The result of the message-digesting process, i.e., the
+    -- message digest MD.
+    digest           Digest
+}
+
+DigestAlgorithmIdentifier ::= AlgorithmIdentifier
+
+Digest ::= OCTET STRING
+
+
+-- PKCS-6 Appendix A (X.509 certificate)
+-------------------------------------------------------------------
+
+Certificate  ::=  SEQUENCE  {
+     tbsCertificate       TBSCertificate, -- value being signed.
+
+    -- identifies the signature algorithm (and any associated
+    -- parameters) under which the certificate information is
+    -- signed. Examples include PKCS #1's md2WithRSAEncryption
+    -- and md5ithRSAEncryption. The value of this field should
+    -- be the same as the value of the signature field of the
+    -- certificate information.
+     signatureAlgorithm   AlgorithmIdentifier,
+
+    -- result of signing the certificate information with the
+    -- certificate issuer's private key.
+     signature            BIT STRING
+}
+
+TBSCertificate  ::=  SEQUENCE  {
+    -- version number, for compatibility with future revisions
+    -- of X.509. Its default value is v1988 (v1 in this grammar
+    -- subset), to which the Version type assigns the integer 0.
+    -- The [0] tag on version is an explicit tag. This is the
+    -- default for tags not marked EXPLICIT or IMPLICIT in the
+    -- ASN.1 module that defines the Certificate type.
+     version         [0]  EXPLICIT Version DEFAULT v1,
+
+    -- issuer-specific serial number of the certificate. Every
+    -- certificate for a particular issuer must have a different
+    -- serial number.
+     serialNumber         CertificateSerialNumber,
+
+    -- identifies the issuer's signature algorithm (and any
+    -- associated parameters). (The field name signature seems
+    -- somewhat of a misnomer, and signatureAlgorithm would be
+    -- more appropriate, but this is the way X.509 does it.)
+     signature            AlgorithmIdentifier,
+
+    -- distinguished name of the certificate issuer.
+     issuer               Name,
+
+    -- validity period for the certificate. The validity period
+    -- specifies the points in time between which the certificate
+    -- is considered valid.
+     validity             Validity,
+
+    -- distinguished name of the certificate subject (the entity
+    -- whose public key is certified).
+     subject              Name,
+
+    -- subjectPublicKeyInfo contains information about the public
+    -- key being certified. The information identifies the entity's
+    -- public-key algorithm (and any associated parameters); examples
+    -- of public-key algorithms include X.509's rsa and PKCS #1's
+    -- rsaEncryption. The information also includes a bit-string
+    -- representation of the entity's public key. For both public-
+    -- key algorithms just mentioned, the bit string contains the
+    -- BER encoding of a value of X.509/PKCS #1 type RSAPublicKey.
+     subjectPublicKeyInfo SubjectPublicKeyInfo,
+
+     issuerUniqueID  [1]  IMPLICIT UniqueIdentifier OPTIONAL,
+                          -- If present, version must be v2 or v3
+     subjectUniqueID [2]  IMPLICIT UniqueIdentifier OPTIONAL,
+                          -- If present, version must be v2 or v3
+     extensions      [3]  EXPLICIT Extensions OPTIONAL
+                          -- If present, version must be v3
+     }
+
+UniqueIdentifier  ::=  BIT STRING
+
+Extensions  ::=  SEQUENCE OF Extension
+
+Extension  ::=  SEQUENCE  {
+   extnID      OBJECT IDENTIFIER,
+   critical    BOOLEAN DEFAULT FALSE,
+   extnValue   OCTET STRING
+}
+
+CertificateSerialNumber ::= INTEGER
+
+Validity ::= SEQUENCE {
+    notBefore  UTCTime,
+    notAfter   UTCTime
+}
+
+SubjectPublicKeyInfo ::= SEQUENCE {
+    algorithm         AlgorithmIdentifier,
+    subjectPublicKey  BIT STRING
+}
+
+AlgorithmIdentifier ::= SEQUENCE {
+    algorithm   OBJECT IDENTIFIER,
+    parameters  ANY DEFINED BY algorithm OPTIONAL
+}
+
+Name ::= RDNSequence
+
+RDNSequence ::= SEQUENCE OF RelativeDistinguishedName
+
+RelativeDistinguishedName ::= SET OF AttributeValueAssertion
+
+AttributeValueAssertion ::= SEQUENCE {
+    attributeType   AttributeType,
+    attributeValue  AttributeValue
+}
+
+AttributeType ::= OBJECT IDENTIFIER
+
+AttributeValue ::= PrintableString

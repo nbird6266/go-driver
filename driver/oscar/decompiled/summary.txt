@@ -1,0 +1,173 @@
+Summary for driver/oscar/oscarJDBC.jar
+Decompiled with CFR 0.152
+
+
+com.oscar.BulkDriver
+----------------------------
+
+parseURL(java.lang.String java.util.Properties )
+  Unable to fully structure code
+
+
+com.oscar.Driver
+----------------------------
+
+parseURL(java.lang.String java.util.Properties )
+  Unable to fully structure code
+
+
+com.oscar.copy.CopyInImpl
+----------------------------
+
+fetchSchemName(com.oscar.jdbc.OscarJdbc2Connection )
+  Unable to fully structure code
+
+
+com.oscar.dispatcher.core.ConnectionMangerV2
+----------------------------
+
+getSlaves()
+  Loose catch block
+
+
+com.oscar.dispatcher.entity.DispatchConnection
+----------------------------
+
+initSlavesInfo()
+  Loose catch block
+
+
+com.oscar.jdbc.OscarImportBinlogHandler
+----------------------------
+
+importBinlog()
+  Loose catch block
+
+
+com.oscar.jdbc.OscarJdbc2Connection
+----------------------------
+
+getLobDisplayMaxSize()
+  Loose catch block
+isValidate(int )
+  Loose catch block
+setDBEncoding()
+  Loose catch block
+isMaster()
+  Loose catch block
+initSlavesInfo(java.util.Properties )
+  Loose catch block
+
+
+com.oscar.jdbc.OscarStatementV2
+----------------------------
+
+doExecuteStatement()
+  Unable to fully structure code
+
+
+com.oscar.protocol.OSCARProtocol
+----------------------------
+
+query(java.lang.String int com.oscar.core.BaseStatement com.oscar.core.BaseResultSet )
+  Unable to fully structure code
+  Could not resolve type clashes
+receiveBatchResult(int int[] )
+  Unable to fully structure code
+  Could not resolve type clashes
+
+
+com.oscar.protocol.OSCARProtocolV2
+----------------------------
+
+receiveBatchResult(int int[] )
+  Unable to fully structure code
+  Could not resolve type clashes
+
+
+com.oscar.util.CharacterData
+----------------------------
+
+endWrite(com.oscar.util.ImportStream )
+  Loose catch block
+
+
+com.oscar.util.ShareImportStream
+----------------------------
+
+run()
+  Loose catch block
+
+
+com.oscar.util.ShareImportStream1
+----------------------------
+
+run()
+  Unable to fully structure code
+
+
+com.oscar.util.Word
+----------------------------
+
+printWords(java.lang.String )
+  Loose catch block
+canExplain(java.lang.String )
+  Loose catch block
+
+
+cryptix.asn1.lang.Parser
+----------------------------
+
+Specification(boolean )
+  Loose catch block
+Type(java.lang.String boolean )
+  Unable to fully structure code
+IntegerType(java.lang.String boolean )
+  Loose catch block
+SequenceType(java.lang.String boolean )
+  Loose catch block
+SequenceOfType(java.lang.String boolean )
+  Loose catch block
+SetType(java.lang.String boolean )
+  Loose catch block
+SetOfType(java.lang.String boolean )
+  Loose catch block
+TaggedType(java.lang.String boolean )
+  Loose catch block
+AnyType(java.lang.String boolean )
+  Loose catch block
+
+
+cryptix.asn1.lang.ParserTokenManager
+----------------------------
+
+getNextToken()
+  Unable to fully structure code
+
+
+cryptix.asn1.lang.Tag
+----------------------------
+
+getExpectedTag(int int java.io.InputStream )
+  Unable to fully structure code
+
+
+cryptix.provider.cipher.Rijndael
+----------------------------
+
+engineUpdate(byte[] int int byte[] int )
+  Unable to fully structure code
+
+
+cryptix.tools.Scar
+----------------------------
+
+run()
+  Unable to fully structure code
+
+
+cryptix.util.core.Hex
+----------------------------
+
+fromReversedString(java.lang.String )
+  Unable to fully structure code

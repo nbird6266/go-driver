@@ -1,0 +1,39 @@
+/*
+ * Decompiled with CFR 0.152.
+ */
+package cryptix.provider.rsa;
+
+import cryptix.provider.rsa.Any_RSA_PKCS1Signature;
+
+public class SHA1_RSA_PKCS1Signature
+extends Any_RSA_PKCS1Signature {
+    private static final byte[] SHA1_ASN_DATA;
+
+    static {
+        byte[] byArray = new byte[15];
+        byArray[0] = 48;
+        byArray[1] = 33;
+        byArray[2] = 48;
+        byArray[3] = 9;
+        byArray[4] = 6;
+        byArray[5] = 5;
+        byArray[6] = 43;
+        byArray[7] = 14;
+        byArray[8] = 3;
+        byArray[9] = 2;
+        byArray[10] = 26;
+        byArray[11] = 5;
+        byArray[13] = 4;
+        byArray[14] = 20;
+        SHA1_ASN_DATA = byArray;
+    }
+
+    public SHA1_RSA_PKCS1Signature() {
+        super("SHA-1");
+    }
+
+    protected byte[] getAlgorithmEncoding() {
+        return SHA1_ASN_DATA;
+    }
+}
+

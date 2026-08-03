@@ -1,0 +1,144 @@
+Index: SSLRecord.java
+===================================================================
+RCS file: /usr/local/CVS/ptls/SSLRecord.java,v
+retrieving revision 1.12
+diff -c -r1.12 SSLRecord.java
+*** SSLRecord.java	17 Nov 2001 04:42:39 -0000	1.12
+--- SSLRecord.java	25 Jul 2002 16:58:56 -0000
+***************
+*** 70,135 ****
+         throws Error,java.io.IOException {
+         int written=0;
+  
+!        Bench.start(1);
+!        written=type.encode(conn,s);
+!        written+=version.encode(conn,s);
+! 
+!        if(conn.write_cipher_state!=null){
+! 	 byte[] encrypted;
+! 	 int length=data.value.length;
+! 	 int pad=0;
+! 	 SSLCipherSuite cs;
+  
+! 	 SSLDebug.debug(SSLDebug.DEBUG_CRYPTO,"Encoding record");
+  	   
+! 	 cs=conn.write_cipher_state.cipher_suite;
+! 	 length+=cs.getDigestOutputLength();
+  
+! 	 SSLDebug.debug(SSLDebug.DEBUG_CRYPTO,"Encrypting: plain text",
+! 	   data.value);
+! 	 if(cs.blockCipherP()){
+! 	   length++;
+! 
+! 	   pad=8-length%8;
+! 	   if(pad==8) pad=0;
+! 	   length+=pad;
+! 	 }
+! 
+!          Bench.start(5);
+! 	 byte[] mac=calcMac(conn,conn.write_cipher_state,
+! 	   conn.write_sequence_num++,data.value);
+!          // Test
+!          // data.value[0]++;
+           
+!          Bench.end(5);
+! 	 SSLDebug.debug(SSLDebug.DEBUG_CRYPTO,"Encoding MAC",mac);
+  	 
+! 	 byte[] total=new byte[length];
+  
+!          Bench.start(6);
+! 	 System.arraycopy(data.value,0,total,0,data.value.length);
+! 	 System.arraycopy(mac,0,total,data.value.length,mac.length);
+! 
+! 	 if(cs.blockCipherP()){
+! 	   for(int i=0;i<(pad+1);i++){
+! 	     total[i+mac.length + data.value.length]=(byte)pad;
+! 	   }
+! 	 }
+!          Bench.end(6);
+           
+!          Bench.start(3);
+! 	 if(conn.write_cipher_state.cipher!=null)
+! 	   data.value=conn.write_cipher_state.cipher.update(total);
+! 	 else
+! 	   data.value=total;
+!          Bench.end(3);	 
+! 	 SSLDebug.debug(SSLDebug.DEBUG_CRYPTO,"Encrypting: cipher text",
+! 	   data.value);
+!        }
+         
+!        written+=data.encode(conn,s);
+  
+!        Bench.end(1);
+         return written;
+       }
+  
+--- 70,137 ----
+         throws Error,java.io.IOException {
+         int written=0;
+  
+!        synchronized(conn){
+!          Bench.start(1);
+!          written=type.encode(conn,s);
+!          written+=version.encode(conn,s);
+! 
+!          if(conn.write_cipher_state!=null){
+!            byte[] encrypted;
+!            int length=data.value.length;
+!            int pad=0;
+!            SSLCipherSuite cs;
+  
+!            SSLDebug.debug(SSLDebug.DEBUG_CRYPTO,"Encoding record");
+  	   
+!            cs=conn.write_cipher_state.cipher_suite;
+!            length+=cs.getDigestOutputLength();
+  
+!            SSLDebug.debug(SSLDebug.DEBUG_CRYPTO,"Encrypting: plain text",
+!              data.value);
+!            if(cs.blockCipherP()){
+!              length++;
+! 
+!              pad=8-length%8;
+!              if(pad==8) pad=0;
+!              length+=pad;
+!            }
+! 
+!            Bench.start(5);
+!            byte[] mac=calcMac(conn,conn.write_cipher_state,
+!              conn.write_sequence_num++,data.value);
+!            // Test
+!            // data.value[0]++;
+           
+!            Bench.end(5);
+!            SSLDebug.debug(SSLDebug.DEBUG_CRYPTO,"Encoding MAC",mac);
+  	 
+!            byte[] total=new byte[length];
+  
+!            Bench.start(6);
+!            System.arraycopy(data.value,0,total,0,data.value.length);
+!            System.arraycopy(mac,0,total,data.value.length,mac.length);
+! 
+!            if(cs.blockCipherP()){
+!              for(int i=0;i<(pad+1);i++){
+!                total[i+mac.length + data.value.length]=(byte)pad;
+!              }
+!            }
+!            Bench.end(6);
+           
+!            Bench.start(3);
+!            if(conn.write_cipher_state.cipher!=null)
+!              data.value=conn.write_cipher_state.cipher.update(total);
+!            else
+!              data.value=total;
+!            Bench.end(3);	 
+!            SSLDebug.debug(SSLDebug.DEBUG_CRYPTO,"Encrypting: cipher text",
+!              data.value);
+!          }
+         
+!          written+=data.encode(conn,s);
+  
+!          Bench.end(1);
+!        }
+         return written;
+       }
+  

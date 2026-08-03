@@ -1,0 +1,115 @@
+Index: SSLConn.java
+===================================================================
+RCS file: /usr/local/CVS/ptls/SSLConn.java,v
+retrieving revision 1.18
+diff -r1.18 SSLConn.java
+137c137,141
+<          if(!(e instanceof SSLAlertException))
+---
+>          if((SSLDebug.debugVal & SSLDebug.DEBUG_HANDSHAKE)>0){
+>            e.printStackTrace();
+>          }
+>
+>          if(!(e instanceof SSLAlertException)) {
+138a143
+>          }
+Index: SSLFinished.java
+===================================================================
+RCS file: /usr/local/CVS/ptls/SSLFinished.java,v
+retrieving revision 1.4
+diff -r1.4 SSLFinished.java
+61a62
+>
+70a72,76
+>
+>        // Test
+>        // finished=new SSLopaque(0);
+>        // finished.value=new byte[0];
+>
+80a87
+>
+Index: SSLServerKeyExchange.java
+===================================================================
+RCS file: /usr/local/CVS/ptls/SSLServerKeyExchange.java,v
+retrieving revision 1.14
+diff -r1.14 SSLServerKeyExchange.java
+106a107,110
+>
+>          // Test
+>          // toBeSigned[0]++;
+>
+115c119
+<          // sig[sig.length-1]++;
+---
+>          //sig[sig.length-1]++;
+Index: dist/build-dist.sh
+===================================================================
+RCS file: /usr/local/CVS/ptls/dist/build-dist.sh,v
+retrieving revision 1.18
+diff -r1.18 build-dist.sh
+3,4c3,4
+< #PNAME=puretls-0.9b2-RC-`date "+%Y%m%d"`
+< PNAME=puretls-0.9b2
+---
+> PNAME=puretls-0.9b3-SNAP-`date "+%Y%m%d"`
+> #PNAME=puretls-0.9b2
+15c15,16
+< (cd ${WDIR}; rm -rf Makefile.ptls build.properties build src/com/claymoresystems/ptls/test/demoCA )
+---
+> (cd ${WDIR}; rm -rf Makefile.ptls build.properties )
+> (cd ${WDIR}; rm -rf src/com/claymoresystems/ptls/test/demoCA/newcerts/* src/com/claymoresystems/ptls/test.bak src/com/claymoresystems/ptls/tmp )
+Index: dist/random.pem
+===================================================================
+RCS file: /usr/local/CVS/ptls/dist/random.pem,v
+retrieving revision 1.3
+diff -r1.3 random.pem
+3c3
+< DEK-Info: DES-EDE3-CBC,758D901375516DAC
+---
+> DEK-Info: DES-EDE3-CBC,6FE330DA4EAD9E16
+5,26c5,26
+< yrezhScAo+tEM0ZRWqZ3U9a4dRcudCJgBbTiGgp2IRiWxryqlvUxYVYkRl1ZiEt1
+< GWU+beZpPnTdPK89hNWPiQuT8+jtnfVUbdZpAIvYo6wYHNMS+4GNkIbxlL1nZ0dJ
+< 2kds+yRUtXuRmEK44x4KBjfB9bwzLlGFKmnvVNqJzni1dWXlgCgWtRzV46zEWR8o
+< Pfk/IKgPKYKf5vTNTeAY0US9ze0T/tQSMoXZxjtp5joTgbvXOeKVlCgBQrbWvkIB
+< W0ZqrFyolIjqpYCj3KE07yi5lVNoKdknNClh9LKX3Rrq147d+oitTSSpVYsWwDdo
+< WgUH2kCUhd2WZI3lHCwBTWWWUBRKnQ09lBLNwW6QRHqNXY/tGCnUoiVA6UwXajbq
+< xs94lU1J3eEZ7kBrWwQ6XlAzDWxVmj0IgAREh38F9ihT+eEx1kgbH+soKVpS2kkC
+< GRcwje4MYz+KESy+b3ciHP9B6zGlnhXl0xz9EfBPdSzfMfg2xjvY2FnDIR5wclDT
+< tsRJIMzMWyFg+fjHy8vN4jdE7qQdOtnHK862jaEP77icdAB24kGy3gU9l+xO3Ryb
+< ghxR7bB7DSRm0Gh/NaxuZ9z0tpy3zNGb6T8vptLosSCnlGDA6ez3MDKIS6flQR/p
+< UOZGHtO1lFfjFahDxxlzyl+d/S587UXjxuj5eHCn5w1dVsxXqRERSpqtW9wFGdqL
+< fAq+S60rAmYpbOfpOun0rrrenmowc22LI8l6WvKEGwzZhJSJ3a5GqQPWrFAO7kKc
+< B6SpbSiAKrog6H6SL1FCPqYLgPqy0Z198jrJEfZgFxWl8KoVXYH6a31k7AVEHueQ
+< Nrook5KwJ1nBKmwxhJzk9BjOYc74cwXVpBd+JFxQ3giM4jkySyJxW5ZQwL0m19hZ
+< 8RfXwKZE6zEdWirP9JxRXMjiWjIFyaKi5geVbS6AysFMdzmZWbWzaxUx35zoIA24
+< CbOcu/0IeVPczNtI5e/QrSCFZVDvoY8SxAXfOQqcLaSotf7j+x3Kljb2c1L9FhW+
+< ZtgBC39C4XyN/zHXUCMvw5altzkFOp/zbYChF96gwqKDFKZO5V5vRUQEnbLMyCxc
+< WUfLXyxFXgsCPUHjLoV1LHqfoE+yFkXMAjOUsnRhmMcLzrSDfu/MqpMTGWar0Max
+< jkE5+7XKSaipH10JDEZ2Wd3ugnHXDVd0BBwTWM81A8XKAB1i8xnLwlXgkVams83n
+< H0+KTVe3PwdoFvsyWah0jOSNZXQp9hZCXyvInP0GkWqrUUY8IvDsFeKDpghwbsiL
+< SFwBRm4aDBQr33WwET+5iFkTcanlj4HyVAHxPB5tyQX/8SO+edHSSSS6Q5GoJwib
+< Yv/ymPp1V4mxu05aIOxqplbXXWTcxl2E
+---
+> 8C1eIi7OMV45p2xktFwXmIoEtYjx8iOafQeGKSbMcgjP/bLvRfXdcA+NLqJOnmsj
+> EyRptkuu+xhTgCNvL1xmyHkDKHEpXHcfeA2tHdPcIHWdb++X4pmcebhRUoPJ5wXM
+> xP+gde0DNNEF5jH7THBKATNbVqQUweTe3zAX66cu6VgUmtWHvxBRmNB3jWxHcU0x
+> NqTVWxZzNCpTFPgBtd9olAMnsfx0K3XE9eaHFhepT/6kxm/ZF5NVr9QjcLo3McVh
+> GBe8asplXDXyjXxNU1JrAa5cBIhOKYhh8uhxpV9CK/o47mdqKacA+YTKSj6mmAcn
+> AdJszYx9rMNINR15RuS8dK4Q9fImR+nnQY+DM17CR1TxFQ2drVkn72PNkdRdNg3E
+> E5LHkLNhADSitq9wosdzh+83wMvjJqS8zkO02QYZGDgcKe9R9b1s1AtGBDnWzp0Q
+> RFtOxOh0KrVDu/anhrYii0FmyfZln9d4PjpYmzlViHJQfZoVPTpxomrJ99AUZT2y
+> G7FEUTL1hrs9ESQK8fUg/LecRKqp5zyJlBWH10JqvIGsA4kgN898X8ISGvpUpE3q
+> PU+PxfVuU4jKqxP5lKFM5HlAIAAc4iZYUvjKmeHQnX1xDJpEgjQjA4b5xfBYUyNq
+> Mha5CpxgST2H9fAl5dc3aosV1xHyjuUVWn7/cYahceOmdjPb2VOBu1VTMtwwKq9k
+> PA6mel4yH4QxoU3HyG4l8Obj0UQKuRfh2MkGckYf1ilH5lUTYgvcVOeQY6xWJqQT
+> o79gA2mUXBEQyMNw9G5pGDTzSG9x+JP3mVPSP/N7Mt7Nia+MX4NW0c+wXJPCEArv
+> CE6mKd6aWjZoQar+c9YlZu8KwKSnS0iNEV8ohuSWhIS/diMP7QTBesbxlPFBWpsJ
+> 9PHnjZ7mTJqvJ3+++6DnSLJk7pwk4gjssUzTubwUWcfvjgC8FrXaXOaJMKF4S01C
+> sNl1vGBxrAbwkzhwpFJXXxm+vEIowg89I0HfjNmgGwB9rJYNtRPfYl0Tq3CwPb6u
+> nGrpuMWda+SvoenjKe1Fm1aYBOXaBkaKql0kPSQrix77BNjZ8DNrXy+0wJrT2e4a
+> IrK1LNpQ4rqBeVRERkBST5Kn0WUWuIXfhUAAUre+cl/ttbzjFsQIVZpk84ALuF/m
+> Q6qcltkIhW5OLfF4zrmcnib3vGU9NFU5TbO0svc6Y+ZDm8w2aOfQObSI7a89HGbQ
+> Kqb5HO6R7nbrxHJfEL1EBCUlkUp+94RHB5H0pan4dkMC15EhsNV2YVRWcZ8WEsnE
+> RSnDDFhotPXrdLnIGtU9m8M86tUVI9rl85xV3g49tcAK4dBUYGZ/oWcSL6Oh9j7K
+> rvted5bOJQjSFlgf/ahExt51FTjniaIM
